@@ -5,7 +5,7 @@ export default function Register({ onRegister }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const submit = async () => {
-    const res = await fetch('http://localhost:4000/api/auth/register', {
+    const res = await fetch('https://blogappserver-mnrz.onrender.com/api/auth/register', {
       method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ username, email, password })
     });
     const json = await res.json();

@@ -7,15 +7,15 @@ export default function PostView({ postId, token, role, onBack }) {
 
     useEffect(() => {
         if (!postId) return;
-        fetch('http://localhost:4000/api/posts/' + postId)
+        fetch('https://blogappserver-mnrz.onrender.com/api/posts/' + postId)
             .then(r => r.json()).then(setPost);
-        fetch('http://localhost:4000/api/comments/post/' + postId)
+        fetch('https://blogappserver-mnrz.onrender.com/api/comments/post/' + postId)
             .then(r => r.json()).then(setComments);
     }, [postId]);
 
     const addComment = async () => {
         if (!token) return alert('Please login to comment');
-        const res = await fetch('http://localhost:4000/api/comments', {
+        const res = await fetch('https://blogappserver-mnrz.onrender.com/api/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
             body: JSON.stringify({ content: commentText, postId })
@@ -25,7 +25,7 @@ export default function PostView({ postId, token, role, onBack }) {
             return alert(j.message || 'Failed to add comment');
         }
         setCommentText('');
-        const r = await fetch('http://localhost:4000/api/comments/post/' + postId);
+        const r = await fetch('https://blogappserver-mnrz.onrender.com/api/comments/post/' + postId);
         setComments(await r.json());
     };
 
@@ -34,7 +34,7 @@ export default function PostView({ postId, token, role, onBack }) {
         if (!token) return alert('Admin token required');
         if (!confirm('Delete this comment?')) return;
 
-        const res = await fetch('http://localhost:4000/api/admin/comments/' + commentId, {
+        const res = await fetch('https://blogappserver-mnrz.onrender.com/api/admin/comments/' + commentId, {
             method: 'DELETE',
             headers: { Authorization: 'Bearer ' + token }
         });

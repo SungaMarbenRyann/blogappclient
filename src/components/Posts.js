@@ -5,7 +5,7 @@ export default function Posts({ onOpen, token, role }) {
     const [showNewPost, setShowNewPost] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/posts')
+        fetch('https://blogappserver-mnrz.onrender.com/api/posts')
             .then(r => r.json())
             .then(setPosts)
             .catch(e => console.error(e));
@@ -66,7 +66,7 @@ export default function Posts({ onOpen, token, role }) {
 }
 
 function fetchPosts(setPosts){
-    return fetch('http://localhost:4000/api/posts')
+    return fetch('https://blogappserver-mnrz.onrender.com/api/posts')
         .then(r => r.json())
         .then(setPosts)
         .catch(console.error);
@@ -138,7 +138,7 @@ function CreatePostModal({ open, onClose, token, role, onCreate }) {
 
         try {
             setSaving(true);
-            const res = await fetch('http://localhost:4000/api/posts', {
+            const res = await fetch('https://blogappserver-mnrz.onrender.com/api/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

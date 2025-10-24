@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 export default function Admin({ token }) {
   const [posts, setPosts] = useState([]);
   useEffect(()=> {
-    fetch('http://localhost:4000/api/posts').then(r=>r.json()).then(setPosts);
+    fetch('https://blogappserver-mnrz.onrender.com/api/posts').then(r=>r.json()).then(setPosts);
   }, []);
 
   const delPost = async (id) => {
     if(!token) return alert('Admin token required');
-    const res = await fetch('http://localhost:4000/api/admin/posts/' + id, {
+    const res = await fetch('https://blogappserver-mnrz.onrender.com/api/admin/posts/' + id, {
       method: 'DELETE', headers: { Authorization: 'Bearer ' + token }
     });
     if(res.ok) { alert('Deleted'); setPosts(posts.filter(p=>p._id !== id)); }

@@ -8,7 +8,7 @@ export default function Comments({ postId, token, role }) {
 
     const load = async () => {
         try {
-            const res = await fetch(`http://localhost:4000/api/comments/post/${postId}`);
+            const res = await fetch(`https://blogappserver-mnrz.onrender.com/api/comments/post/${postId}`);
             const data = await res.json();
             setComments(data || []);
         } finally {
@@ -21,7 +21,7 @@ export default function Comments({ postId, token, role }) {
     const add = async () => {
         if (!token) return alert('Login required to comment');
         if (!text.trim()) return;
-        const res = await fetch('http://localhost:4000/api/comments', {
+        const res = await fetch('https://blogappserver-mnrz.onrender.com/api/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export default function Comments({ postId, token, role }) {
         if (!token) return alert('Admin token required');
         if (!confirm('Delete this comment?')) return;
 
-        const res = await fetch(`http://localhost:4000/api/admin/comments/${id}`, {
+        const res = await fetch(`https://blogappserver-mnrz.onrender.com/api/admin/comments/${id}`, {
             method: 'DELETE',
             headers: { Authorization: 'Bearer ' + token }
         });
